@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PubSub from 'pubsub-js';
 import TratadorErros from './TratadorErros'
 
-
 class FormularioLivro extends Component {
   constructor(props) {
     super(props);
@@ -65,16 +64,17 @@ class FormularioLivro extends Component {
       <div className="autorForm">
         <form className="pure-form pure-form-aligned" onSubmit={this.handleLivroSubmit}>
           <InputCustom id="titulo" name="titulo" label="Title: " type="text" value={this.state.titulo} placeholder="Titulo do livro" onChange={this.setTitulo} />
-          <InputCustom id="preco" name="preco" label="Price: " type="decimal" value={this.state.preco} placeholder="Preço do livro" onChange={this.setPreco} />
-          <div className="pure-controls">
-          <select value={this.state.autorId} name="autorId" onChange={this.setAutorId}>
-              <option value="">Select an author</option>
+          <InputCustom id="preco" name="preco" label="Price: " type="text" value={this.state.preco} placeholder="Preço do livro" onChange={this.setPreco} />
+          <div className="pure-control-group">
+          <label thmlFor="autorId">Autor</label>
+            <select value={this.state.autorId} id="autorID" name="autorId" onChange={this.setAutorId}>
+              <option value="">Select the author</option>
               {autores}
             </select>
           </div>
           <div className="pure-control-group">                                  
             <label></label> 
-            <button type="submit" className="pure-button pure-button-primary">Gravar</button>                                    
+            <button type="submit" className="pure-button pure-button-primary">Submit</button>                                    
           </div>          
         </form>             
       </div>
@@ -144,7 +144,7 @@ export default class LivroAdmin extends Component {
     return(
       <div>
         <div className="header">
-          <h1>Book record</h1>
+          <h1>Book registry </h1>
         </div>
         <div className="content" id="content">
           <FormularioLivro autores={this.state.autores}/>
