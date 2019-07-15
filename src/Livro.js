@@ -2,7 +2,7 @@ import $ from "jquery";
 import InputCustom from "./components/InputCustom"
 import React, { Component } from 'react';
 import PubSub from 'pubsub-js';
-import TratadorErros from './TratadorErros'
+import TratadorErros from './TratadorErros';
 
 
 class FormularioLivro extends Component {
@@ -41,9 +41,9 @@ class FormularioLivro extends Component {
       type: 'POST',
       data: JSON.stringify({titulo:titulo,preco:preco,autorId:autorId}),
       success: function(novaListagem) {
-          PubSub.publish( 'atualiza-lista-livros',novaListagem);            
+          PubSub.publish('atualiza-lista-livros', novaListagem);            
           this.setState({titulo:'',preco:'',autorId:''});
-      },
+      }.bind(this),
       error: function(resposta){
         if(resposta.status === 400){
           new TratadorErros().publicaErros(resposta.responseJSON);
@@ -64,8 +64,8 @@ class FormularioLivro extends Component {
     return (
       <div className="autorForm">
         <form className="pure-form pure-form-aligned" onSubmit={this.handleLivroSubmit}>
-          <InputCustom id="titulo" name="titulo" label="Title: " type="text" value={this.state.titulo} placeholder="Title's book" onChange={this.setTitulo} />
-          <InputCustom id="preco" name="preco" label="Price: " type="text" value={this.state.preco} placeholder="Price's book" onChange={this.setPreco} />
+          <InputCustom id="titulo" name="titulo" label="Title: " type="text" value={this.state.titulo} onChange={this.setTitulo} />
+          <InputCustom id="preco" name="preco" label="Price: " type="text" value={this.state.preco} onChange={this.setPreco} />
           <div className="pure-control-group">
           <label htmlFor="autorId">Autor</label>
             <select value={this.state.autorId} id="autorID" name="autorId" onChange={this.setAutorId}>
