@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PubSub from 'pubsub-js';
 import TratadorErros from './TratadorErros'
 
+
 class FormularioLivro extends Component {
   constructor(props) {
     super(props);
@@ -63,10 +64,10 @@ class FormularioLivro extends Component {
     return (
       <div className="autorForm">
         <form className="pure-form pure-form-aligned" onSubmit={this.handleLivroSubmit}>
-          <InputCustom id="titulo" name="titulo" label="Title: " type="text" value={this.state.titulo} placeholder="Titulo do livro" onChange={this.setTitulo} />
-          <InputCustom id="preco" name="preco" label="Price: " type="text" value={this.state.preco} placeholder="Preço do livro" onChange={this.setPreco} />
+          <InputCustom id="titulo" name="titulo" label="Title: " type="text" value={this.state.titulo} placeholder="Title's book" onChange={this.setTitulo} />
+          <InputCustom id="preco" name="preco" label="Price: " type="text" value={this.state.preco} placeholder="Price's book" onChange={this.setPreco} />
           <div className="pure-control-group">
-          <label thmlFor="autorId">Autor</label>
+          <label htmlFor="autorId">Autor</label>
             <select value={this.state.autorId} id="autorID" name="autorId" onChange={this.setAutorId}>
               <option value="">Select the author</option>
               {autores}
